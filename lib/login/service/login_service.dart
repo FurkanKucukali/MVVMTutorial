@@ -9,7 +9,7 @@ import 'package:printflow_mulakat/login/viewmodel/login_view_model.dart';
 class LoginService{
 
     Future<LoginResponseModel> loginProcess(LoginModel model) async {
-    var url = "http://78.189.142.133:8090/api/Login/${model.username}/${model.password}/";
+    var url = "${model.username}/${model.password}/";
     final response = await http.get(Uri.parse(url));
 
 

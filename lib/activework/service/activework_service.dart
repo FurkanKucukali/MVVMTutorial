@@ -15,7 +15,7 @@ class ActiveWorkService{
 
   Future<List<WorkLine>>  getWorkLineList(String username,String password) async {
     String basicAuth = 'Basic ' + base64Encode(utf8.encode('$username:$password'));
-    var url = "http://78.189.142.133:8090/api/GetWorkLineList/";
+    var url = "";
     final response = await http.get(Uri.parse(url),headers: <String,String>{'authorization': basicAuth});
 
     var decodedProducts = json.decode(response.body).cast<Map<String, dynamic>>();
@@ -27,7 +27,7 @@ class ActiveWorkService{
   }
   Future<List<ActiveWorkModel>> getActiveWorkList(String username,String password,String workLineId) async {
     String basicAuth = 'Basic ' + base64Encode(utf8.encode('$username:$password'));
-    var url = "http://78.189.142.133:8090/api/GetActiveWorkList/$workLineId/";
+    var url = "$workLineId/";
     final response = await http.get(Uri.parse(url),headers: <String,String>{'authorization': basicAuth});
     var decodedProducts = json.decode(response.body).cast<Map<String, dynamic>>();
     List<ActiveWorkModel> activeworklist = await decodedProducts
@@ -37,7 +37,7 @@ class ActiveWorkService{
   }
   Future<List<TimeLineModel>> getTimeLineData(String username,String password,String jobId) async {
     String basicAuth = 'Basic ' + base64Encode(utf8.encode('$username:$password'));
-    var url = "http://78.189.142.133:8090/api/GetTimeLineData/$jobId/";
+    var url = "$jobId/";
     final response = await http.get(Uri.parse(url),headers: <String,String>{'authorization': basicAuth});
     var decodedProducts = json.decode(response.body).cast<Map<String, dynamic>>();
     List<TimeLineModel> activeworklist = await decodedProducts

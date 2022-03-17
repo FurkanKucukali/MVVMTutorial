@@ -12,7 +12,7 @@ class PoolWorkService{
 
       Future<List<WorkListModel>>  GetPoolWorkList(String username,String password) async {
           String basicAuth = 'Basic ' + base64Encode(utf8.encode('$username:$password'));
-          var url = "http://78.189.142.133:8090/api/GetPoolWorkList/$username/";
+          var url = "/$username/";
           final response = await http.get(Uri.parse(url),headers: <String,String>{'authorization': basicAuth});
           var decodedProducts = json.decode(response.body).cast<Map<String, dynamic>>();
            List<WorkListModel> worklist = await decodedProducts
@@ -22,7 +22,7 @@ class PoolWorkService{
   }
         receivePoolWork(String username,String password,String jobID) async {
           String basicAuth = 'Basic ' + base64Encode(utf8.encode('$username:$password'));
-          var url = "http://78.189.142.133:8090/api/receivePoolWork/$jobID/$username/";
+          var url = "$jobID/$username/";
           final response = await http.get(Uri.parse(url),headers: <String,String>{'authorization': basicAuth});
           print(response.body);
         }
